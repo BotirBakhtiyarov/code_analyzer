@@ -11,7 +11,7 @@ setup(
     description="AI-powered code vulnerability scanner for GitHub repositories",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/code-analyzer",
+    url="https://github.com/BotirBakhtiyarov/code_analyzer",
     packages=find_packages(),
     install_requires=[
         'requests>=2.31.0',
