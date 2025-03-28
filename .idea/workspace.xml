@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fc515f78-ecb2-4ca5-98e4-4f8a2bc2b97f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/README_pype.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MANIFEST.in" beforeDir="false" afterPath="$PROJECT_DIR$/MANIFEST.in" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codeanalyzer/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/codeanalyzer/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codeanalyzer/analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/codeanalyzer/analyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codeanalyzer/cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/codeanalyzer/cli.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codeanalyzer/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/codeanalyzer/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
@@ -40,6 +41,9 @@
     &quot;accountId&quot;: &quot;0e9af6b9-86fa-4e02-a85f-a0c30d4d48c7&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -58,6 +62,11 @@
     &quot;git-widget-placeholder&quot;: &quot;master&quot;
   }
 }</component>
+  <component name="QodanaReportsService">
+    <option name="descriptions">
+      <ReportDescription path="D:\munisa\code_analyzer\results.sarif" qodana="false" reportGuid="0c22468f-b27e-42ac-bc82-65d7e1744501" reportId="0c22468f-b27e-42ac-bc82-65d7e1744501" />
+    </option>
+  </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\project\code_analyzer\codeanalyzer" />

@@ -41,7 +41,7 @@ def analyze_command(args):
         report = analyzer.generate_report()
 
         if args.output:
-            write_report(report, args.output)
+            write_report(report, args.output, args.format)
             print(f"\n✅ Report saved to {args.output}")
         else:
             print("\n📝 Final Summary:")
@@ -74,6 +74,10 @@ def main():
     analyze_parser.add_argument('github_url', help='GitHub repository URL')
     analyze_parser.add_argument('-o', '--output',
                                help='Output file (supports .txt, .md, .html, .json)')
+    analyze_parser.add_argument('--format', '-f',
+                                choices=['txt', 'md', 'html', 'json', 'sarif'],
+                                default='txt',
+                                help='Output report format')
     parser.add_argument(
         '-v', '--version',
         action='version',

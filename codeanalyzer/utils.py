@@ -6,6 +6,7 @@ import requests
 from tqdm import tqdm
 import json
 from codeanalyzer.config import Config
+from . import __version__
 
 
 def download_repo(github_url):
@@ -61,8 +62,11 @@ def read_file(file_path):
         return f.read()
 
 
-def write_report(report, filename):
-    file_ext = os.path.splitext(filename)[1].lower()
+def write_report(report, filename, format=None):
+    if format:
+        file_ext = f'.{format}'
+    else:
+        file_ext = os.path.splitext(filename)[1].lower()
 
     if file_ext == '.txt':
         _write_txt_report(report, filename)
@@ -72,6 +76,8 @@ def write_report(report, filename):
         _write_html_report(report, filename)
     elif file_ext == '.json':
         _write_json_report(report, filename)
+    elif file_ext == '.sarif' or format == 'sarif':
+        _write_sarif_report(report, filename)
     else:
         raise ValueError(f"Unsupported file format: {file_ext}")
 
@@ -171,3 +177,38 @@ def _write_markdown_report(report, filename):
 
     with open(filename, 'w', encoding='utf-8') as f:
         f.write('\n'.join(content))
+
+def _write_sarif_report(report, filename):
+    sarif_template = {
+        "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+        "version": "2.1.0",
+        "runs": [{
+            "tool": {
+                "driver": {
+                    "name": "CodeAnalyzer",
+                    "version": __version__,
+                    "rules": []
+                }
+            },
+            "results": []
+        }]
+    }
+
+    for idx, finding in enumerate(report['detailed_findings']):
+        sarif_template["runs"][0]["results"].append({
+            "ruleId": f"CA{idx:04d}",
+            "message": {
+                "text": finding['result']
+            },
+            "locations": [{
+                "physicalLocation": {
+                    "artifactLocation": {
+                        "uri": finding['file']
+                    }
+                }
+            }],
+            "level": "error" if 'critical' in finding['result'].lower() else "warning"
+        })
+
+    with open(filename, 'w', encoding='utf-8') as f:
+        json.dump(sarif_template, f, indent=2)

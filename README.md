@@ -1,27 +1,20 @@
+# CodeAnalyzer Pro 🔍 | AI-Powered Code Security Analysis
 
-# CodeAnalyzer Pro 🔍 | Enterprise-Grade Code Analysis
-
-[![PyPI Version](https://img.shields.io/pypi/v/code-analyzer-b)](https://pypi.org/project/code-analyzer-b/)
-[![Python Versions](https://img.shields.io/pypi/pyversions/code-analyzer-b)](https://pypi.org/project/code-analyzer-b/)
+[![PyPI Version](https://img.shields.io/pypi/v/code-analyzer-b.svg)](https://pypi.org/project/code-analyzer-b/)
+[![Python Versions](https://img.shields.io/pypi/pyversions/code-analyzer-b.svg)](https://pypi.org/project/code-analyzer-b/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![SARIF Support](https://img.shields.io/badge/SARIF-2.1.0-green.svg)](https://docs.github.com/en/code-security/code-scanning/integrating-with-code-scanning/sarif-support-for-code-scanning)
 
+**CodeAnalyzer Pro** is an AI-enhanced static analysis tool that identifies security vulnerabilities, code smells, and compliance issues in software repositories. Powered by DeepSeek's AI and compatible with GitHub Code Scanning.
 
+## ✨ Key Features
 
-**CodeAnalyzer Pro** is an AI-powered static analysis solution that identifies security vulnerabilities, code smells, and performance anti-patterns in software repositories.
-
-```bash
-pip install code-analyzer-b
-```
-
-## 📖 Table of Contents
-- [Key Features](#-key-features)
-- [Quick Start](#-quick-start)
-- [Enterprise Integration](#-enterprise-integration)
-- [Language Support](#-language-support)
-- [Security Model](#-security-model)
-- [Roadmap](#-roadmap)
-- [Contributing](#-contributing)
-- [License](#-license)
+- **AI-Powered Analysis** - Context-aware vulnerability detection
+- **Multi-Language Support** - Python, JS/TS, Java, C/C++, Go, Rust
+- **SARIF Export** - GitHub Code Scanning integration
+- **CI/CD Ready** - GitHub Actions, GitLab CI, Jenkins support
+- **Security Compliance** - OWASP Top 10, CWE/SANS Top 25
+- **Smart Reporting** - HTML, Markdown, JSON, SARIF formats
 
 ## 🚀 Quick Start
 
@@ -36,61 +29,85 @@ pip install code-analyzer-b
 code_analyzer setup
 
 # Analyze repository
-code_analyzer analyze https://github.com/your/repo
-
-# Advanced analyze repository
-code_analyzer analyze https://github.com/your/repo --output report.html
+code_analyzer analyze https://github.com/yourusername/repo --output report.html
 ```
 
 ### Sample Output
 ```text
-✅ Initialized configuration in ~/.code_analyzer/config.ini
-🔍 Analyzing repository: https://github.com/your/repo
-📦 Downloaded 143 files (2.1MB) in 4.2s
-🛡️ Found 3 critical vulnerabilities:
-  - CVE-2024-1234: SQL Injection in user_controller.py
-  - CWE-79: XSS vulnerability in form_handler.js
-  - CWE-327: Weak crypto in auth_service.java
-📊 Generated HTML report: analysis_report_20240515.html
+✅ Configuration saved to ~/.code_analyzer/config.ini
+🔍 Analyzing: https://github.com/yourusername/repo
+📦 Repository cloned (142 files, 2.8MB)
+🛡️ Found 3 critical issues, 7 warnings
+📊 Generated HTML report: report.html
 ```
 
-## ✨ Key Features
+## 🔧 Advanced Usage
 
-- **Multi-Layer Analysis**
-  - SAST (Static Application Security Testing)
-  - AI-Pattern Recognition
-  - Dependency Vulnerability Scanning
+### CI/CD Integration
+```yaml
+# GitHub Action Example
+- name: Security Scan
+  run: |
+    code_analyzer analyze . \
+      --format sarif \
+      --output results.sarif
+      
+- name: Upload SARIF
+  uses: github/codeql-action/upload-sarif@v2
+  with:
+    sarif_file: results.sarif
+```
 
-- **Enterprise-Ready**
-  - CI/CD Pipeline Integration
-  - JIRA/ServiceNow Integration
-  - SAML/SSO Support
+### Analyze Private Repositories
+```bash
+GITHUB_TOKEN=your_token code_analyzer analyze https://github.com/private/repo
+```
 
-- **Advanced Reporting**
-  - OWASP Top 10 Mapping
-  - CWE/CVE Cross-Reference
+### Custom Analysis
+```bash
+# Output formats
+code_analyzer analyze https://github.com/repo --output report.md --format markdown
+```
 
-## 🌐 Language Support
+## 🌐 Supported Languages
 
-| Language       | Version Support | Security Checks              |
-|----------------|-----------------|------------------------------|
-| Python         | 3.8+            | 38 checks                    |
-| JavaScript/TS  | ES6+            | 45 checks                    |
-| Java           | 8+              | 32 checks                    |
-| Go             | 1.18+           | 28 checks                    |
-| C/C++          | C11/C++17       | 41 checks                    |
-| Rust           | 2021 Edition    | 25 checks                    |
+| Language       | Extensions           | Common Checks               |
+|----------------|----------------------|-----------------------------|
+| Python         | `.py`                | SQLi, XSS, Dependency Risks |
+| JavaScript/TS  | `.js`, `.ts`         | XSS, Prototype Pollution    |
+| Java           | `.java`              | Insecure Deserialization    |
+| C/C++          | `.c`, `.cpp`         | Buffer Overflows            |
+| Go             | `.go`                | Race Conditions             |
+| Rust           | `.rs`                | Unsafe Code Patterns        |
 
+## 🔒 Security & Compliance
+
+- **Data Protection**
+  - Temporary files auto-deleted after analysis
+  - Encrypted API communications (TLS 1.3)
+  - Zero telemetry/data collection
+
+- **Standards Compliance**
+  - OWASP Top 10 2023
+  - CWE/SANS Top 25
+  - GDPR-ready architecture
 
 ## 🤝 Contributing
 
-We welcome community contributions! Please see our [Contribution Guidelines](CONTRIBUTING.md) for:
-- Feature proposals
+We welcome contributions! Please see our [Contribution Guidelines](CONTRIBUTING.md) for:
+- Feature requests
 - Bug reports
 - Documentation improvements
-- Security disclosures
+- Code contributions
 
 ## 📜 License
 
-MIT Licensed - Full details in [LICENSE](LICENSE)
+MIT Licensed - See [LICENSE](LICENSE) for full text
 
+---
+
+**Disclaimer:** This project is not affiliated with DeepSeek. Use of AI services requires separate API access.
+
+[GitHub Repository](https://github.com/BotirBakhtiyarov/code_analyzerr) | 
+[PyPI Package](https://pypi.org/project/code-analyzer-b/) | 
+[Telegram Channel](https://t.me/opensource_uz)
