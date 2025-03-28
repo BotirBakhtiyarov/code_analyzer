@@ -96,6 +96,6 @@ MIT Licensed - See [LICENSE](LICENSE) for full text
 
 **Disclaimer:** This project is not affiliated with DeepSeek. Use of AI services requires separate API access.
 
-[GitHub Repository](https://github.com/BotirBakhtiyarov/code_analyzerr) | 
+[GitHub Repository](https://github.com/BotirBakhtiyarov/code_analyzer) | 
 [PyPI Package](https://pypi.org/project/code-analyzer-b/) | 
 [Telegram Channel](https://t.me/opensource_uz)
