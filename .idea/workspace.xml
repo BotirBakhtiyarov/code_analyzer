@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fc515f78-ecb2-4ca5-98e4-4f8a2bc2b97f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MANIFEST.in" beforeDir="false" afterPath="$PROJECT_DIR$/MANIFEST.in" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/codeanalyzer/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code_analyzer/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/codeanalyzer/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code_analyzer/analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/codeanalyzer/analyzer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code_analyzer/cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/codeanalyzer/cli.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code_analyzer/deepseek.py" beforeDir="false" afterPath="$PROJECT_DIR$/codeanalyzer/deepseek.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code_analyzer/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/codeanalyzer/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_basic.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_basic.py" afterDir="false" />
-    </list>
+    <list default="true" id="fc515f78-ecb2-4ca5-98e4-4f8a2bc2b97f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,6 +52,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\project\code_analyzer\codeanalyzer" />
       <recent name="D:\project\code_analyzer\code_analyzer" />
       <recent name="D:\project\code_analyzer" />
     </key>
