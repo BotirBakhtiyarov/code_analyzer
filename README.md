@@ -80,18 +80,6 @@ code_analyzer analyze https://github.com/repo --output report.md --format markdo
 | Go             | `.go`                | Race Conditions             |
 | Rust           | `.rs`                | Unsafe Code Patterns        |
 
-## 🔒 Security & Compliance
-
-- **Data Protection**
-  - Temporary files auto-deleted after analysis
-  - Encrypted API communications (TLS 1.3)
-  - Zero telemetry/data collection
-
-- **Standards Compliance**
-  - OWASP Top 10 2023
-  - CWE/SANS Top 25
-  - GDPR-ready architecture
-
 ## 🤝 Contributing
 
 We welcome contributions! Please see our [Contribution Guidelines](CONTRIBUTING.md) for:
