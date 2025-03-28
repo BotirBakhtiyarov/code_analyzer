@@ -4,6 +4,7 @@ import zipfile
 import io
 import requests
 from tqdm import tqdm
+import json
 from codeanalyzer.config import Config
 
 
@@ -58,3 +59,115 @@ def scan_files(directory):
 def read_file(file_path):
     with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
         return f.read()
+
+
+def write_report(report, filename):
+    file_ext = os.path.splitext(filename)[1].lower()
+
+    if file_ext == '.txt':
+        _write_txt_report(report, filename)
+    elif file_ext == '.md':
+        _write_markdown_report(report, filename)
+    elif file_ext == '.html':
+        _write_html_report(report, filename)
+    elif file_ext == '.json':
+        _write_json_report(report, filename)
+    else:
+        raise ValueError(f"Unsupported file format: {file_ext}")
+
+
+def _write_txt_report(report, filename):
+    content = [
+        "Code Analysis Report",
+        "=" * 80,
+        report['summary'],
+        "\nDetailed Findings:"
+    ]
+    for finding in report['detailed_findings']:
+        content.append(f"\nFile: {finding['file']}")
+        content.append("-" * 60)
+        content.append(finding['result'])
+
+    with open(filename, 'w', encoding='utf-8') as f:
+        f.write('\n'.join(content))
+
+
+def _write_html_report(report, filename):
+    findings_html = "".join(
+        f"""
+        <div class="finding">
+            <h3>{finding['file']}</h3>
+            <pre>{finding['result']}</pre>
+        </div>
+        """
+        for finding in report['detailed_findings']
+    )
+
+    html = f"""
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Code Analysis Report</title>
+        <style>
+            body {{ font-family: Arial, sans-serif; margin: 40px; }}
+            .finding {{ margin-bottom: 30px; border-left: 4px solid #007bff; padding-left: 15px; }}
+            pre {{ background: #f8f9fa; padding: 15px; border-radius: 4px; }}
+            h1 {{ color: #2c3e50; }}
+            h2 {{ color: #34495e; }}
+        </style>
+    </head>
+    <body>
+        <h1>Code Analysis Report</h1>
+        <h2>Summary</h2>
+        <pre>{report['summary']}</pre>
+        <h2>Detailed Findings</h2>
+        {findings_html}
+    </body>
+    </html>
+    """
+    with open(filename, 'w', encoding='utf-8') as f:
+        f.write(html)
+
+
+def _write_json_report(report, filename):
+    report_data = {
+        "summary": report['summary'],
+        "findings": [
+            {
+                "file": f['file'],
+                "result": f['result'],
+                "severity": _detect_severity(f['result'])
+            } for f in report['detailed_findings']
+        ]
+    }
+    with open(filename, 'w', encoding='utf-8') as f:
+        json.dump(report_data, f, indent=2, ensure_ascii=False)
+
+
+def _detect_severity(text):
+    text = text.lower()
+    if 'critical' in text:
+        return "critical"
+    elif 'high' in text:
+        return "high"
+    elif 'medium' in text:
+        return "medium"
+    return "low"
+
+
+def _write_markdown_report(report, filename):
+    content = [
+        "# Code Analysis Report",
+        f"**Summary**\n{report['summary']}",
+        "## Detailed Findings"
+    ]
+
+    for idx, finding in enumerate(report['detailed_findings'], 1):
+        content.append(
+            f"\n### Finding {idx}\n"
+            f"**File**: `{finding['file']}`\n\n"
+            f"```\n{finding['result']}\n```"
+        )
+
+    with open(filename, 'w', encoding='utf-8') as f:
+        f.write('\n'.join(content))

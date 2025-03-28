@@ -37,6 +37,9 @@ code_analyzer setup
 
 # Analyze repository
 code_analyzer analyze https://github.com/your/repo
+
+# Advanced analyze repository
+code_analyzer analyze https://github.com/your/repo --output report.html
 ```
 
 ### Sample Output
@@ -78,24 +81,6 @@ code_analyzer analyze https://github.com/your/repo
 | C/C++          | C11/C++17       | 41 checks                    |
 | Rust           | 2021 Edition    | 25 checks                    |
 
-
-
-## 📈 Enterprise Integration
-
-```yaml
-# GitHub Action Example
-name: Security Analysis
-on: [push]
-jobs:
-  code-analysis:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Run CodeAnalyzer
-        run: |
-          pip install code-analyzer-b
-          code_analyzer analyze . --format sarif --output results.sarif
-```
 
 ## 🤝 Contributing
 

@@ -3,8 +3,9 @@ import sys
 import os
 import shutil
 import configparser
-from .utils import download_repo, scan_files
+from .utils import download_repo, scan_files, write_report
 from .analyzer import CodeAnalyzer
+from . import __version__
 
 
 def setup_command(args):
@@ -39,18 +40,21 @@ def analyze_command(args):
         analyzer.analyze_project(files)
         report = analyzer.generate_report()
 
-        print("\n📝 Final Summary:")
-        print("=" * 80)
-        print(report['summary'])
-
-        if report['detailed_findings']:
-            print("\n🔍 Detailed Findings:")
-            for finding in report['detailed_findings']:
-                print(f"\nFile: {finding['file']}")
-                print("-" * 80)
-                print(finding['result'])
+        if args.output:
+            write_report(report, args.output)
+            print(f"\n✅ Report saved to {args.output}")
         else:
-            print("\n✅ No significant issues found")
+            print("\n📝 Final Summary:")
+            print("=" * 80)
+            print(report['summary'])
+            if report['detailed_findings']:
+                print("\n🔍 Detailed Findings:")
+                for finding in report['detailed_findings']:
+                    print(f"\nFile: {finding['file']}")
+                    print("-" * 80)
+                    print(finding['result'])
+            else:
+                print("\n✅ No significant issues found")
 
     except Exception as e:
         print(f"\n❌ Error: {str(e)}")
@@ -58,7 +62,6 @@ def analyze_command(args):
     finally:
         if repo_path and os.path.exists(os.path.dirname(repo_path)):
             shutil.rmtree(os.path.dirname(repo_path))
-
 
 def main():
     parser = argparse.ArgumentParser(prog="code_analyzer")
@@ -69,6 +72,13 @@ def main():
 
     analyze_parser = subparsers.add_parser('analyze', help='Analyze a repository')
     analyze_parser.add_argument('github_url', help='GitHub repository URL')
+    analyze_parser.add_argument('-o', '--output',
+                               help='Output file (supports .txt, .md, .html, .json)')
+    parser.add_argument(
+        '-v', '--version',
+        action='version',
+        version=f'%(prog)s {__version__}'
+    )
     analyze_parser.set_defaults(func=analyze_command)
 
     args = parser.parse_args()

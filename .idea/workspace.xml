@@ -5,9 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fc515f78-ecb2-4ca5-98e4-4f8a2bc2b97f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/CONTRIBUTING.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codeanalyzer/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/codeanalyzer/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codeanalyzer/analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/codeanalyzer/analyzer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codeanalyzer/cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/codeanalyzer/cli.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codeanalyzer/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/codeanalyzer/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
