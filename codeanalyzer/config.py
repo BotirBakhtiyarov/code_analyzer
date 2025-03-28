@@ -1,12 +1,18 @@
 import os
-from dotenv import load_dotenv
+import configparser
 
-load_dotenv()
 
 class Config:
-    DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
+    _config = configparser.ConfigParser()
+    _config.read(os.path.expanduser("~/.code_analyzer/config.ini"))
+
+    try:
+        DEEPSEEK_API_KEY = _config.get("DEEPSEEK", "API_KEY")
+    except (configparser.NoSectionError, configparser.NoOptionError):
+        DEEPSEEK_API_KEY = None
+
     DEEPSEEK_API_URL = "https://api.deepseek.com/v1/chat/completions"
-    MAX_FILE_SIZE = 5000000  # 1MB
+    MAX_FILE_SIZE = 1000000  # 1MB
     SUPPORTED_EXTENSIONS = {
         '.py', '.js', '.java', '.c', '.cpp', '.h', '.hpp',
         '.html', '.css', '.php', '.rb', '.go', '.rs'

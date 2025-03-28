@@ -1,78 +1,121 @@
-# CodeAnalyzer 🔍
+# Code Analyzer 🔍 | AI-Powered Security Analysis
 
-[![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/)
+[![PyPI Version](https://img.shields.io/pypi/v/code-analyzer-b.svg)](https://pypi.org/project/code-analyzer-b/)
+[![Python Versions](https://img.shields.io/pypi/pyversions/code-analyzer-b.svg)](https://pypi.org/project/code-analyzer-b/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-AI-powered GitHub repository vulnerability scanner with DeepSeek integration.
 
-## Features ✨
-
-- Automated GitHub repository analysis
-- Security vulnerability detection using AI
-- Streaming summary generation
-- Support for 15+ programming languages
-- CLI interface with progress tracking
-
-## Installation 📦
+**Code Analyzer** is an intelligent security scanning tool that leverages DeepSeek's AI to identify vulnerabilities, code smells, and potential security risks in GitHub repositories.
 
 ```bash
-pip install code-analyzer
+pip install code-analyzer-b
 ```
 
-## Usage 🚀
+## 🚀 Quick Start
 
-1. First-time setup:
+### 1. Initial Setup
 ```bash
-codeanalyzer setup
-# Edit .env file with your DeepSeek API key
+code_analyzer setup
+🔑 Enter your DeepSeek API key: sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-2. Analyze a repository:
+### 2. Analyze Repository
 ```bash
-codeanalyzer analyze https://github.com/username/repository
+code_analyzer analyze https://github.com/yourusername/your-repo
+
+# Sample Output
+🔍 Starting analysis of https://github.com/yourusername/your-repo
+📁 Found 127 files to analyze
+Analyzing Files: 100%|████████████████| 127/127 [03:45<00:00]
+📝 Critical Findings (3) | Warnings (7) | Recommendations (12)
 ```
 
-## Example Output 📄
+## ✨ Key Features
 
-```text
-🔍 Starting analysis of https://github.com/example/repo
-📁 Found 42 files to analyze
-Analyzing Files: [████████████████████] 100% (42/42) [00:35]
+- **Multi-Language Support** - Python, JS/TS, Java, C/C++, Go, Rust, PHP, Ruby
+- **Smart Filtering** - Auto-ignore binaries, generated files, and large assets
+- **AI-Powered Analysis** - Context-aware vulnerability detection
+- **Prioritized Reporting** - Risk-level categorized findings
+- **CI/CD Ready** - Simple CLI interface for automation
 
-📝 Final Summary:
-Critical vulnerabilities found in 3 files:
-- SQL injection risk in api_handler.py
-- Hardcoded credentials in config_loader.py
-- XSS vulnerability in template_engine.js
+## 📚 Documentation
 
-🔍 Detailed Findings:
-File: src/api_handler.py
-------------------------------------------------------------
-Potential SQL injection vulnerability found in line 42...
+
+### Configuration Options
+| Setting              | Default        | Description                          |
+|----------------------|----------------|--------------------------------------|
+| `MAX_FILE_SIZE`      | 5MB            | Maximum file size to analyze         |
+| `REQUEST_TIMEOUT`    | 30s            | API request timeout                  |
+| `SUPPORTED_EXT`      | 15+ extensions | File types to analyze                |
+
+Edit configuration at:  
+`~/.code_analyzer/config.ini`
+
+## 🛠 How It Works
+
+```mermaid
+graph TD
+    A[GitHub URL] --> B(Download Repo)
+    B --> C{File Filter}
+    C --> D[Code Files]
+    C --> E[Ignored Files]
+    D --> F[AI Analysis]
+    F --> G[Security Checks]
+    F --> H[Best Practices]
+    F --> I[Vulnerability Scan]
+    G --> J(Generate Report)
+    H --> J
+    I --> J
 ```
 
-## Configuration ⚙️
+## 🌐 Supported Languages
 
-Create `.env` file:
-```ini
-DEEPSEEK_API_KEY=your_api_key_here
-```
+| Language       | Extensions           | Security Checks               |
+|----------------|----------------------|-------------------------------|
+| Python         | `.py`                | SQLi, XSS, dependency risks   |
+| JavaScript/TS  | `.js`, `.ts`         | Prototype pollution, XSS      |
+| Java           | `.java`              | Insecure deserialization      |
+| C/C++          | `.c`, `.cpp`         | Buffer overflow, memory leaks |
+| Go             | `.go`                | Goroutine leaks, race conditions |
+| Rust           | `.rs`                | Unsafe code, memory safety    |
 
-## Testing 🧪
+## 🔒 Security & Ethics
 
+1. **Data Handling**:
+   - Temporary repository clones are deleted after analysis
+   - No code storage or telemetry collection
+   - API keys encrypted in configuration
+
+2. **Ethical Use**:
+   - Only analyze repositories you own/have permission to scan
+   - Do not use for malicious purposes
+   - Respect software licenses and intellectual property
+
+## ❓ FAQ
+
+**Q: How does this differ from static analysis tools?**  
+A: Combines traditional SAST with AI context awareness for fewer false positives
+
+**Q: Analysis taking too long?**  
 ```bash
-pip install pytest
-pytest tests/ -v
+code_analyzer analyze URL --exclude tests,examples,dist
 ```
 
-## Contributing 🤝
+**Q: Seeing API key errors?**  
+```bash
+rm ~/.code_analyzer/config.ini && code_analyzer setup
+```
 
-1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a PR
+## 🤝 Contributing
 
-## License 📄
+We welcome contributions! Please see our [Contribution Guidelines](CONTRIBUTING.md) for:
+- Feature requests
+- Bug reports
+- Documentation improvements
+- Code contributions
 
-This project is licensed under the MIT License - see [LICENSE](LICENSE) for details.
+## 📜 License
+
+MIT License - See [LICENSE](LICENSE) for full text
+
+---

@@ -2,33 +2,41 @@ import argparse
 import sys
 import os
 import shutil
+import configparser
 from .utils import download_repo, scan_files
 from .analyzer import CodeAnalyzer
 
 
 def setup_command(args):
-    print("Initializing code analyzer...")
-    with open(".env", "w") as f:
-        f.write("DEEPSEEK_API_KEY=your_api_key_here\n")
-    print("Setup complete. Edit .env file with your actual API key.")
+    print("Initializing code analyzer setup...")
+    api_key = input("Please enter your DeepSeek API key: ").strip()
+    if not api_key:
+        print("Error: API key cannot be empty.")
+        sys.exit(1)
+
+    config_dir = os.path.expanduser("~/.code_analyzer")
+    os.makedirs(config_dir, exist_ok=True)
+    config_path = os.path.join(config_dir, "config.ini")
+
+    config = configparser.ConfigParser()
+    config["DEEPSEEK"] = {"API_KEY": api_key}
+
+    with open(config_path, "w") as f:
+        config.write(f)
+
+    print(f"Setup complete. API key saved to {config_path}")
 
 
 def analyze_command(args):
     print(f"\n🔍 Starting analysis of {args.github_url}")
     repo_path = None
     try:
-        # Phase 1: Download
         repo_path = download_repo(args.github_url)
-
-        # Phase 2: Scan
         files = scan_files(repo_path)
         print(f"📁 Found {len(files)} files to analyze")
 
-        # Phase 3: Analyze
         analyzer = CodeAnalyzer()
         analyzer.analyze_project(files)
-
-        # Phase 4: Report
         report = analyzer.generate_report()
 
         print("\n📝 Final Summary:")

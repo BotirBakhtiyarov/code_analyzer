@@ -4,8 +4,8 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
-    name="code-analyzer",
-    version="0.1.0",
+    name="code-analyzer-b",
+    version="0.1.1",
     author="Botir Bakhtiyarov",
     author_email="botirbakhtiyarovb@gmail.com",
     description="AI-powered code vulnerability scanner for GitHub repositories",
@@ -16,7 +16,6 @@ setup(
     install_requires=[
         'requests>=2.31.0',
         'tqdm>=4.66.1',
-        'python-dotenv>=1.0.0',
         'pygments>=2.17.2'
     ],
     entry_points={
