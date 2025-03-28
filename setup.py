@@ -12,7 +12,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/BotirBakhtiyarov/code_analyzer",
-    packages=find_packages(),
+    packages=find_packages(exclude=["tests", "tests.*"]),
     install_requires=[
         'requests>=2.31.0',
         'tqdm>=4.66.1',
@@ -21,7 +21,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'code_analyzer=app:main'
+            'code_analyzer=codeanalyzer.app:main'
         ]
     },
     classifiers=[

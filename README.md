@@ -23,13 +23,13 @@ pip install code-analyzer
 
 1. First-time setup:
 ```bash
-code_analyzer setup
+codeanalyzer setup
 # Edit .env file with your DeepSeek API key
 ```
 
 2. Analyze a repository:
 ```bash
-code_analyzer analyze https://github.com/username/repository
+codeanalyzer analyze https://github.com/username/repository
 ```
 
 ## Example Output 📄

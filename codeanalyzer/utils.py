@@ -4,7 +4,7 @@ import zipfile
 import io
 import requests
 from tqdm import tqdm
-from config import Config
+from codeanalyzer.config import Config
 
 
 def download_repo(github_url):

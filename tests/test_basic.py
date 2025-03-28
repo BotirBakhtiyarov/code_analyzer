@@ -1,9 +1,7 @@
 import pytest
-import os
-from unittest import mock
-from code_analyzer.utils import scan_files, read_file
-from code_analyzer.analyzer import CodeAnalyzer
-from code_analyzer.cli import analyze_command
+from codeanalyzer.utils import scan_files, read_file
+from codeanalyzer.analyzer import CodeAnalyzer
+from codeanalyzer.cli import analyze_command
 
 
 @pytest.fixture
@@ -30,7 +28,7 @@ def test_read_file(tmp_path):
 
 
 def test_analyzer_with_findings(mocker):
-    mocker.patch('code_analyzer.deepseek.DeepSeekClient.analyze_code',
+    mocker.patch('codeanalyzer.deepseek.DeepSeekClient.analyze_code',
                  return_value="SQL injection risk found")
 
     analyzer = CodeAnalyzer()
@@ -41,7 +39,7 @@ def test_analyzer_with_findings(mocker):
 
 
 def test_analyzer_no_issues(mocker):
-    mocker.patch('code_analyzer.deepseek.DeepSeekClient.analyze_code',
+    mocker.patch('codeanalyzer.deepseek.DeepSeekClient.analyze_code',
                  return_value="No issues found")
 
     analyzer = CodeAnalyzer()
@@ -51,9 +49,9 @@ def test_analyzer_no_issues(mocker):
 
 
 def test_cli_analyze_command(mocker, capsys):
-    mocker.patch('code_analyzer.utils.download_repo', return_value="/fake/path")
-    mocker.patch('code_analyzer.utils.scan_files', return_value=[])
-    mocker.patch('code_analyzer.analyzer.CodeAnalyzer.generate_report',
+    mocker.patch('codeanalyzer.utils.download_repo', return_value="/fake/path")
+    mocker.patch('codeanalyzer.utils.scan_files', return_value=[])
+    mocker.patch('codeanalyzer.analyzer.CodeAnalyzer.generate_report',
                  return_value={"summary": "Test summary", "detailed_findings": []})
 
     class Args:
@@ -66,6 +64,6 @@ def test_cli_analyze_command(mocker, capsys):
 
 
 def test_config_loading():
-    from config import Config
+    from codeanalyzer.config import Config
     assert hasattr(Config, 'DEEPSEEK_API_URL')
     assert Config.MAX_FILE_SIZE == 1000000
