@@ -1,11 +1,11 @@
-# CodeAnalyzer Pro 🔍 | AI-Powered Code Security Analysis
+# CodeAnalyzer🔍 | AI-Powered Code Security Analysis
 
 [![PyPI Version](https://img.shields.io/pypi/v/code-analyzer-b.svg)](https://pypi.org/project/code-analyzer-b/)
 [![Python Versions](https://img.shields.io/pypi/pyversions/code-analyzer-b.svg)](https://pypi.org/project/code-analyzer-b/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![SARIF Support](https://img.shields.io/badge/SARIF-2.1.0-green.svg)](https://docs.github.com/en/code-security/code-scanning/integrating-with-code-scanning/sarif-support-for-code-scanning)
 
-**CodeAnalyzer Pro** is an AI-enhanced static analysis tool that identifies security vulnerabilities, code smells, and compliance issues in software repositories. Powered by DeepSeek's AI and compatible with GitHub Code Scanning.
+**CodeAnalyzer** is an AI-enhanced static analysis tool that identifies security vulnerabilities, code smells, and compliance issues in software repositories. Powered by DeepSeek's AI and compatible with GitHub Code Scanning.
 
 ## ✨ Key Features
 
