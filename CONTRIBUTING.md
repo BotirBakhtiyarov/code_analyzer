@@ -108,7 +108,7 @@ safety check
 ## 🔒 Security Policy
 
 ### Disclosure Process
-1. Email security@yourcompany.com
+1. Email botirbakhtiyarovb@gmail.com
 2. Include vulnerability details
 3. We will respond within 72 hours
 4. CVE assignment coordination
