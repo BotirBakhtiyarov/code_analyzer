@@ -16,6 +16,8 @@
 - **Security Compliance** - OWASP Top 10, CWE/SANS Top 25
 - **Smart Reporting** - HTML, Markdown, JSON, SARIF formats
 
+![Alt Text](diagram.png)
+
 ## 🚀 Quick Start
 
 ### Installation
