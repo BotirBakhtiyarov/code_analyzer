@@ -113,4 +113,5 @@ MIT Licensed - See [LICENSE](LICENSE) for full text
 
 [GitHub Repository](https://github.com/BotirBakhtiyarov/code_analyzer) | 
 [PyPI Package](https://pypi.org/project/code-analyzer-b/) | 
-[Telegram Channel](https://t.me/opensource_uz)
+[Telegram Channel](https://t.me/opensource_uz) |
+[Community Discord](https://discord.gg/e63MyDs8)
