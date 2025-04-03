@@ -5,7 +5,7 @@ with open("README_pype.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="code-analyzer-b",
-    version="0.1.4",
+    version="0.1.6",
     author="Botir Bakhtiyarov",
     author_email="botirbakhtiyarovb@gmail.com",
     description="AI-powered code vulnerability scanner for GitHub repositories",

@@ -9,18 +9,24 @@ from codeanalyzer.config import Config
 from . import __version__
 
 
-def download_repo(github_url):
+def download_repo(github_url, git_token=None):
     temp_dir = tempfile.mkdtemp(prefix="code_analyzer_")
+    headers = {'User-Agent': 'CodeAnalyzer'}
+    if git_token:
+        headers['Authorization'] = f'token {git_token}'
 
     # Try both main and master branches
     branches = ['main', 'master']
     for branch in branches:
         zip_url = f"{github_url}/archive/refs/heads/{branch}.zip"
-        response = requests.get(zip_url, stream=True)
+        response = requests.get(zip_url, headers=headers, stream=True)
         if response.status_code == 200:
             break
     else:
-        raise ValueError("Failed to download repository: branch not found")
+        error_msg = "Failed to download repository. Possible reasons:\n"
+        error_msg += "- Invalid/Missing GitHub token for private repo\n"
+        error_msg += "- Repository/branch doesn't exist"
+        raise ValueError(error_msg)
 
     total_size = int(response.headers.get('content-length', 0))
 

@@ -32,7 +32,7 @@ def analyze_command(args):
     print(f"\n🔍 Starting analysis of {args.github_url}")
     repo_path = None
     try:
-        repo_path = download_repo(args.github_url)
+        repo_path = download_repo(args.github_url, git_token=args.git_token)
         files = scan_files(repo_path)
         print(f"📁 Found {len(files)} files to analyze")
 
@@ -67,25 +67,49 @@ def main():
     parser = argparse.ArgumentParser(prog="code_analyzer")
     subparsers = parser.add_subparsers()
 
+    # Setup command
     setup_parser = subparsers.add_parser('setup', help='Initial setup')
     setup_parser.set_defaults(func=setup_command)
 
-    analyze_parser = subparsers.add_parser('analyze', help='Analyze a repository')
-    analyze_parser.add_argument('github_url', help='GitHub repository URL')
-    analyze_parser.add_argument('-o', '--output',
-                               help='Output file (supports .txt, .md, .html, .json)')
-    analyze_parser.add_argument('--format', '-f',
-                                choices=['txt', 'md', 'html', 'json', 'sarif'],
-                                default='txt',
-                                help='Output report format')
+    # Analyze command
+    analyze_parser = subparsers.add_parser(
+        'analyze',
+        help='Analyze a repository',
+        formatter_class=argparse.RawTextHelpFormatter,
+        description="Analyze a GitHub repository for security vulnerabilities"
+    )
+    analyze_parser.add_argument(
+        'github_url',
+        help='GitHub repository URL (public or private)'
+    )
+    analyze_parser.add_argument(
+        '--git-token',
+        help='GitHub access token for private repositories\n'
+             '(create at: https://github.com/settings/tokens)'
+    )
+    analyze_parser.add_argument(
+        '-o', '--output',
+        help='Output file path for report\n'
+             '(supports .txt, .md, .html, .json, .sarif)'
+    )
+    analyze_parser.add_argument(
+        '-f', '--format',
+        choices=['txt', 'md', 'html', 'json', 'sarif'],
+        default='txt',
+        help='Output format for the report\n'
+             '(default: autodetect from output file extension)'
+    )
+
+    # Version and main help
     parser.add_argument(
         '-v', '--version',
         action='version',
         version=f'%(prog)s {__version__}'
     )
-    analyze_parser.set_defaults(func=analyze_command)
 
+    analyze_parser.set_defaults(func=analyze_command)
     args = parser.parse_args()
+
     if hasattr(args, 'func'):
         args.func(args)
     else:

@@ -4,6 +4,7 @@
 [![Python Versions](https://img.shields.io/pypi/pyversions/code-analyzer-b.svg)](https://pypi.org/project/code-analyzer-b/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![SARIF Support](https://img.shields.io/badge/SARIF-2.1.0-green.svg)](https://docs.github.com/en/code-security/code-scanning/integrating-with-code-scanning/sarif-support-for-code-scanning)
+[![DeepSeek Integration](https://img.shields.io/badge/DeepSeek-API-7c3aed.svg)](https://deepseek.com)
 
 **CodeAnalyzer** is an AI-enhanced static analysis tool that identifies security vulnerabilities, code smells, and compliance issues in software repositories. Powered by DeepSeek's AI and compatible with GitHub Code Scanning.
 
@@ -43,21 +44,28 @@ code_analyzer analyze https://github.com/yourusername/repo --output report.html
 📊 Generated HTML report: report.html
 ```
 
-## 🔧 Advanced Usage
+## 🛠️ Advanced Usage
 
-### CI/CD Integration
+### GitHub Integration
+```bash
+code_analyzer analyze . \
+  --format sarif \
+  --git-token $GITHUB_TOKEN \
+  --output results.sarif
+```
+
+### CI/CD Pipeline Example
 ```yaml
-# GitHub Action Example
-- name: Security Scan
-  run: |
-    code_analyzer analyze . \
-      --format sarif \
-      --output results.sarif
-      
-- name: Upload SARIF
+- name: Run Security Scan
+  uses: code-analyzer/action@v1
+  with:
+    output_format: 'sarif'
+    output_file: 'analysis.sarif'
+    
+- name: Upload Results
   uses: github/codeql-action/upload-sarif@v2
   with:
-    sarif_file: results.sarif
+    sarif_file: analysis.sarif
 ```
 
 ### Custom Analysis
@@ -76,6 +84,16 @@ code_analyzer analyze https://github.com/repo --output report.md --format markdo
 | C/C++          | `.c`, `.cpp`         | Buffer Overflows            |
 | Go             | `.go`                | Race Conditions             |
 | Rust           | `.rs`                | Unsafe Code Patterns        |
+
+## 💡 Pro Tips
+
+```bash
+# Analyze private repository
+code_analyzer analyze https://github.com/private/repo --git-token=ghp_xxxx
+
+# Generate multiple report formats
+code_analyzer analyze . --output report.html --format json
+```
 
 ## 🤝 Contributing
 
