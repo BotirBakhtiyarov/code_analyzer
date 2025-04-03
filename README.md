@@ -60,11 +60,6 @@ code_analyzer analyze https://github.com/yourusername/repo --output report.html
     sarif_file: results.sarif
 ```
 
-### Analyze Private Repositories
-```bash
-GITHUB_TOKEN=your_token code_analyzer analyze https://github.com/private/repo
-```
-
 ### Custom Analysis
 ```bash
 # Output formats
